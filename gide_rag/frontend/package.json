@@ -1,0 +1,8 @@
+/* package.json : Configuration des dépendances et scripts du projet React */
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {},
+  "scripts": {}
+}
