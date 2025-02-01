@@ -1,0 +1,25 @@
+name: "Cession du Droit au Bail"
+id: "cession_du_droit"
+type: "text"
+unit: 0
+top_k: 1
+bm25_query:
+  en: "lease transfer rights yes no"
+  fr: "cession du droit au bail oui non"
+semantic_query:
+  en: "Does the lease include a clause for the transfer of lease rights (yes or no)?"
+  fr: "Le bail mentionne-t-il une clause de cession du droit au bail (oui ou non) ?"
+retriever_strategy:
+  semantic: 1
+  bm25: 0
+generator:
+  query:
+    en: "Does the lease include a clause for the transfer of lease rights?"
+    fr: "Le bail mentionne-t-il une clause de cession du droit au bail ?"
+  instruction:
+    en: "- The answer must be either 'yes' or 'no'. Provide the raw value from the lease."
+    fr: "- La réponse doit être 'oui' ou 'non'. Fournis la valeur brute issue du bail."
+  conf:
+    max_tokens: 30
+    temperature: 0.1
+    top_p: 0.95
