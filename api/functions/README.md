@@ -7,16 +7,16 @@ This folder contains the AWS Lambda functions for the Gide project. These server
 ```bash
 api/functions/
 ├── export/          # Function for exporting the structured data to a template Word document
-└── import/          # Function handling the generation of the structured data from the uploaded PDF
+└── generate/        # Function handling the generation of the structured data from the uploaded PDF
 ```
 
 ## Export
 
 The export lambda function generates a Word document from the structured data.
 
-## Import
+## Generate
 
-The import lambda function generates the structured data from the uploaded PDF
+The generate lambda function generates the structured data from the uploaded PDF
 
 ## Requirements
 
