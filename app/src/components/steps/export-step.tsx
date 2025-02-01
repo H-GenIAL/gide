@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   MultiStepFormStepProps,
   MultiStepFormStep,
-} from "../ui/multi-step-form";
+} from "@/components/ui/multi-step-form";
 
 export function ExportStep({ step }: MultiStepFormStepProps) {
   return (

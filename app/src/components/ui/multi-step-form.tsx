@@ -67,7 +67,7 @@ function MultiStepProgressBar({
   return (
     <div
       className={cn(
-        "mx-auto flex w-full max-w-xl items-center justify-center",
+        "mx-auto mb-8 flex w-full max-w-xl items-center justify-center",
         className,
       )}
     >
