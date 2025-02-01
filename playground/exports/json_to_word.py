@@ -3,8 +3,10 @@ from docx import Document
 import argparse
 import sys
 from pathlib import Path
-from utils import iterate_over_unique_cells
 from mapping import cell_mapping
+from utils import iterate_over_unique_cells
+from io import BytesIO
+import base64
 
 def load_json(file_path):
     """Load and parse JSON file."""
@@ -41,7 +43,7 @@ def replace_key_with_value(key, value):
                         run.text = value
         return callback
 
-def write_to_word(data, output_path, template_path):
+def export_to_word(data, output_path, template_path):
     """Write data to a Word document."""
     template_doc = Document(template_path)
     table = template_doc.tables[0]
@@ -49,6 +51,20 @@ def write_to_word(data, output_path, template_path):
         # Iterate over all unique cells in the table and replace the key with the value
         iterate_over_unique_cells(table, replace_key_with_value(key, value))
     template_doc.save(output_path)
+
+def export_to_word_base64(data, template_path):
+    doc = Document(template_path)
+    table = doc.tables[0]
+    for key, value in data.items():
+        # Iterate over all unique cells in the table and replace the key with the value
+        iterate_over_unique_cells(table, replace_key_with_value(key, value))
+    doc_buffer = BytesIO()
+    doc.save(doc_buffer)
+    doc_buffer.seek(0)
+    
+    # Convert the document to base64
+    base64_doc = base64.b64encode(doc_buffer.getvalue()).decode('utf-8')
+    return base64_doc
 
 def main():
     parser = argparse.ArgumentParser(description='Convert JSON to Word document')
@@ -76,7 +92,7 @@ def main():
     
     # Process the conversion
     data = load_json(input_path)
-    write_to_word(data, output_path, template_path)
+    export_to_word(data, output_path, template_path)
 
 if __name__ == '__main__':
     main()
