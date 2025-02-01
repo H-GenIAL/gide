@@ -1,14 +1,18 @@
 import boto3
 import json
 from docx import Document
-import sys
 from io import BytesIO
 import base64
 from pathlib import Path
 
 """
-Mapping the types of the cells in the template to the data in the YAML file
-to be used in the yaml-to-word.py script to replace the template keys with the data
+Mapping dictionary that defines the structure and types of fields in the Word template.
+
+Each key represents a field in the template that will be replaced with actual data.
+The value is a dictionary containing the field type:
+- "text": Simple text replacement
+- "yesno": Yes/No checkbox replacement where one box will be checked based on the value
+- "checkbox": Checkbox replacement where the checkbox will be checked if the value is "Oui"
 """
 cell_mapping = {
     "bailleur": {
@@ -34,40 +38,50 @@ cell_mapping = {
 def docx_iterate_over_unique_cells(table, func):
     """
     Iterate over all unique cells in a table (ignoring merged/extended cells)
+    and apply a function to each cell.
     """
     # Get unique cells (ignoring merged/extended cells)
     cells = set(cell for row in table.rows for cell in row.cells)
     for cell in cells:
         func(cell)
 
-def load_json(file_path):
-    """Load and parse JSON file."""
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            return json.load(file)
-    except Exception as e:
-        print(f"Error loading JSON file: {e}")
-        sys.exit(1)
-
-def docx_replace_text(cell, text, value):
-    for paragraph in cell.paragraphs:
+def docx_replace_text(paragraphs, text, value):
+    """
+    Replace a text found inside a paragraph with a value.
+    """
+    for paragraph in paragraphs:
         for run in paragraph.runs:
             if text in run.text:
                 run.text = value
 
 def replace_key_with_value(key, value):
-    """Create a callback function to replace template keys with values in Word doc cells."""
+    """
+    A callback function that will replace the keys found in the template with their corresponding values.
+    Handles the different types of cells in the template.
+    """
     type = cell_mapping[key]['type'] if key in cell_mapping else "text"
     
     def callback(cell):
         if type == "yesno":
-            docx_replace_text(cell, f"${key}-yes", "☑" if value == "Yes" else "☐")
-            docx_replace_text(cell, f"${key}-no", "☐" if value == "Yes" else "☑")
+            docx_replace_text(cell.paragraphs, f"${key}-yes", "☑" if value == "Oui" else "☐")
+            docx_replace_text(cell.paragraphs, f"${key}-no", "☐" if value == "Oui" else "☑")
+        elif type == "checkbox":
+            docx_replace_text(cell.paragraphs, f"${key}", "☑" if value == "Oui" else "☐")
         else:
-            docx_replace_text(cell, f"${key}", value)
+            docx_replace_text(cell.paragraphs, f"${key}", value)
     return callback
 
 def export_to_word_base64(data, template_path):
+    """
+    Export the structured data to a Word document and return the base64 encoded document.
+
+    Args:
+        data (dict): The structured data to export.
+        template_path (str): The path to the Word template.
+
+    Returns:
+        str: The base64 encoded document.
+    """
     doc = Document(template_path)
     table = doc.tables[0]
     for key, value in data.items():
@@ -82,6 +96,13 @@ def export_to_word_base64(data, template_path):
     return base64_doc
 
 def lambda_handler(event, context):
+    """
+    Lambda function to export a Word document from a structured data.
+
+    Args:
+        event (dict): The event object containing the request data.
+        context (dict): The context object containing the runtime information.
+    """
     s3_client = boto3.client('s3')
     
     try:
@@ -127,7 +148,13 @@ def lambda_handler(event, context):
         }
 
 def debug_lambda_handler(event, context):
-    # Read the content
+    """
+    Debug the lambda function by exporting a Word document from a mocked structured data.
+
+    Args:
+        event (dict): The event object containing the request data.
+        context (dict): The context object containing the runtime information.
+    """
     try:
         template_doc_content = Path('data/template.docx').read_bytes()
         template_doc_buffer = BytesIO(template_doc_content)
