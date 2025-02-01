@@ -1,0 +1,117 @@
+[
+    {
+        "id": "bailleur",
+        "query": "Qui est le bailleur dans le contrat ? Il est souvent mentionné avant 'ci-après désigné bailleur'.",
+        "instruction": "Réponds de façon concise, avec uniquement le nom du bailleur."
+    },
+    {
+        "id": "preneur",
+        "query": "Qui est le preneur dans le contrat ? Il est souvent mentionné avant 'ci-après désigné le preneur'.",
+        "instruction": "Réponds de façon concise, avec uniquement le nom du preneur."
+    },
+    {
+        "id": "cession",
+        "query": "Le contrat mentionne-t-il une clause de cession du droit au bail ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les conditions essentielles."
+    },
+    {
+        "id": "adresse",
+        "query": "Quelle est l'adresse exacte du bien loué ?",
+        "instruction": "Donne uniquement l'adresse du bien loué. Si elle n'est pas trouvée, indique 'Information non trouvée'."
+    },
+    {
+        "id": "designation",
+        "query": "Quelle est la désignation précise des locaux dans le contrat ?",
+        "instruction": "Indique la description complète des locaux tels qu'ils figurent dans le contrat."
+    },
+    {
+        "id": "dest_loc_act",
+        "query": "Quelle est la destination des locaux loués et les activités autorisées ?",
+        "instruction": "Décris la destination et les activités autorisées pour le local, en reprenant les termes exacts du contrat."
+    },
+    {
+        "id": "clause_enseigne",
+        "query": "Le contrat contient-il une clause spécifique concernant l’enseigne ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, indique les obligations ou restrictions."
+    },
+    {
+        "id": "exclusivite",
+        "query": "Le contrat prévoit-il une exclusivité pour certaines activités ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les activités concernées."
+    },
+    {
+        "id": "non_concurrence",
+        "query": "Existe-t-il une clause de non-concurrence ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise son champ d’application."
+    },
+    {
+        "id": "loyer_annuel_init",
+        "query": "Quel est le montant du loyer annuel initial (HT HC) ?",
+        "instruction": "Donne uniquement le montant en euros."
+    },
+    {
+        "id": "loyer_annuel_cours",
+        "query": "Quel est le montant du loyer annuel en cours (HT HC) ?",
+        "instruction": "Donne uniquement le montant en euros."
+    },
+    {
+        "id": "clause_index",
+        "query": "Le contrat contient-il une clause d'indexation du loyer ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise l'indice de référence utilisé."
+    },
+    {
+        "id": "date_sign",
+        "query": "Quelle est la date de signature du bail ?",
+        "instruction": "Donne uniquement la date sous le format JJ/MM/AAAA."
+    },
+    {
+        "id": "duree_bail",
+        "query": "Quelle est la durée du bail initialement prévue dans le contrat ?",
+        "instruction": "Réponds uniquement avec la durée en années."
+    },
+    {
+        "id": "periode_ferme",
+        "query": "Quelle est la période ferme du bail ?",
+        "instruction": "Indique la durée en années. Si aucune période ferme n'est précisée, indique 'Non précisé'."
+    },
+    {
+        "id": "depot_garantie",
+        "query": "Quel est le montant du dépôt de garantie ?",
+        "instruction": "Donne uniquement le montant en euros."
+    },
+    {
+        "id": "clause_spe_duree_bail_renouv",
+        "query": "Le bail contient-il une clause spécifique sur la durée du bail renouvelé ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, détaille les conditions."
+    },
+    {
+        "id": "facu_trav",
+        "query": "Le preneur a-t-il la faculté de réaliser des travaux dans les locaux loués ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les conditions mentionnées dans le contrat."
+    },
+    {
+        "id": "etat_bon",
+        "query": "L'état des locaux loués à la restitution est-il mentionné comme 'bon' ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'."
+    },
+    {
+        "id": "facu_sousloc",
+        "query": "Le preneur a-t-il la faculté de sous-louer les locaux sans accord préalable du bailleur ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les conditions."
+    },
+    {
+        "id": "droit_pref_b_immeuble",
+        "query": "Le bail contient-il un droit de préemption ou de préférence en cas de vente de l'immeuble par le bailleur ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les conditions."
+    },
+    {
+        "id": "assu_b_p",
+        "query": "Le bail mentionne-t-il une obligation d'assurance pour le preneur ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise le type d’assurance requis."
+    },
+    {
+        "id": "gar_cess_cessionnaire",
+        "query": "Le cessionnaire est-il tenu de fournir des garanties en cas de cession du bail ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise la nature des garanties."
+    }
+]
