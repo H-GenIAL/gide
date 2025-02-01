@@ -1,4 +1,4 @@
-import yaml
+import json
 from docx import Document
 import argparse
 import sys
@@ -6,13 +6,13 @@ from pathlib import Path
 from utils import iterate_over_unique_cells
 from mapping import cell_mapping
 
-def load_yaml(file_path):
-    """Load and parse YAML file."""
+def load_json(file_path):
+    """Load and parse JSON file."""
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
-            return yaml.safe_load(file)
+            return json.load(file)
     except Exception as e:
-        print(f"Error loading YAML file: {e}")
+        print(f"Error loading JSON file: {e}")
         sys.exit(1)
 
 def replace_key_with_value(key, value):
@@ -51,8 +51,8 @@ def write_to_word(data, output_path, template_path):
     template_doc.save(output_path)
 
 def main():
-    parser = argparse.ArgumentParser(description='Convert YAML to Word document')
-    parser.add_argument('-i', '--input', help='Input YAML file path')
+    parser = argparse.ArgumentParser(description='Convert JSON to Word document')
+    parser.add_argument('-i', '--input', help='Input JSON file path')
     parser.add_argument('-t', '--template', help='Template Word document path')
     parser.add_argument('-o', '--output', help='Output Word document path')
     
@@ -61,7 +61,7 @@ def main():
     # Validate input file
     input_path = Path(args.input)
     if not input_path.exists():
-        print(f"Input YAML file not found: {input_path}")
+        print(f"Input JSON file not found: {input_path}")
         sys.exit(1)
 
     template_path = Path(args.template or "./template.docx")
@@ -75,7 +75,7 @@ def main():
         output_path.parent.mkdir(parents=True, exist_ok=True)
     
     # Process the conversion
-    data = load_yaml(input_path)
+    data = load_json(input_path)
     write_to_word(data, output_path, template_path)
 
 if __name__ == '__main__':
