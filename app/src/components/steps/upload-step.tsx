@@ -16,7 +16,7 @@ export function UploadStep({ step }: MultiStepFormStepProps) {
       className="flex flex-1 flex-col items-center justify-center gap-4"
     >
       <FileUpload onChange={() => {}} />
-      <Button className="w-full max-w-xl" onClick={nextStep}>
+      <Button className="w-full max-w-xl" size="lg" onClick={nextStep}>
         <SparklesIcon className="size-4" />
         Générer la fiche audit
       </Button>
