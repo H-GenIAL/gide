@@ -1,16 +1,18 @@
 import React, { ReactElement, useState } from "react";
 import { CheckIcon } from "lucide-react";
-import { StepFormContext } from "@/contexts/step-form";
+import { StepNavigationContext } from "@/contexts/step-navigation";
 import { cn } from "@/lib/utils";
 
-interface MultiStepFormProps {
+interface StepNavigationProps {
   children: React.ReactNode;
 }
 
-export function MultiStepForm({ children }: MultiStepFormProps) {
+export function StepNavigation({ children }: StepNavigationProps) {
   const [currentStep, setCurrentStep] = useState(1);
+  const [data, setData] = useState<unknown>(null);
 
-  const nextStep = () => {
+  const nextStep = (data: unknown) => {
+    setData(data);
     setCurrentStep((prev) => prev + 1);
   };
 
@@ -18,14 +20,14 @@ export function MultiStepForm({ children }: MultiStepFormProps) {
     setCurrentStep((prev) => prev - 1);
   };
 
-  // Validate that all children are MultiStepFormStep components
+  // Validate that all children are MultiStepSection components
   const stepsComponents = React.Children.toArray(children).filter(
-    (child): child is ReactElement<MultiStepFormStepProps> => {
+    (child): child is ReactElement<StepProps> => {
       if (React.isValidElement(child) && child.props.step) {
         return true;
       }
       console.warn(
-        "MultiStepForm component only accepts MultiStepFormStep components as children",
+        "StepNavigation component only accepts Step components as children",
       );
       return false;
     },
@@ -36,34 +38,35 @@ export function MultiStepForm({ children }: MultiStepFormProps) {
   );
 
   return (
-    <StepFormContext.Provider
+    <StepNavigationContext.Provider
       value={{
         steps: stepsComponents.length,
         currentStep,
         nextStep,
         previousStep,
+        data,
       }}
     >
-      <MultiStepProgressBar
+      <StepNavigationProgress
         steps={stepsComponents.length}
         currentStep={currentStep}
       />
       {ActiveStepComponent}
-    </StepFormContext.Provider>
+    </StepNavigationContext.Provider>
   );
 }
 
-interface MultiStepProgressBarProps {
+interface StepNavigationProgressProps {
   steps: number;
   currentStep: number;
   className?: string;
 }
 
-function MultiStepProgressBar({
+function StepNavigationProgress({
   steps,
   currentStep,
   className,
-}: MultiStepProgressBarProps) {
+}: StepNavigationProgressProps) {
   return (
     <div
       className={cn(
@@ -99,17 +102,14 @@ function MultiStepProgressBar({
   );
 }
 
-export interface MultiStepFormStepProps {
+export interface StepProps {
   step: number;
   children?: React.ReactNode;
   className?: string;
 }
 
-export function MultiStepFormStep({
-  children,
-  className,
-}: MultiStepFormStepProps) {
+export function Step({ children, className }: StepProps) {
   return <div className={className}>{children}</div>;
 }
 
-MultiStepFormStep.displayName = "MultiStepFormStep";
+Step.displayName = "Step";

@@ -2,39 +2,27 @@ import React, { useState, ReactElement } from "react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 
-interface TabButtonProps {
-  tabName: string;
-  isActive: boolean;
-  onSelect: (tabName: string) => void;
-}
-
-interface TabContainerProps {
+interface TabNavigationProps {
   initialTabName: string;
-  children: ReactElement<TabPanelProps> | ReactElement<TabPanelProps>[];
+  children: ReactElement<TabProps> | ReactElement<TabProps>[];
   className?: string;
 }
 
-interface TabPanelProps {
-  tabName: string;
-  children?: React.ReactNode;
-  className?: string;
-}
-
-export function TabContainer({
+export function TabNavigation({
   initialTabName,
   children,
   className,
-}: TabContainerProps) {
+}: TabNavigationProps) {
   const [activeTabName, setActiveTabName] = useState<string>(initialTabName);
 
-  // Validate that all children are TabPanel components
+  // Validate that all children are TabSection components
   const validTabPanels = React.Children.toArray(children).filter(
-    (child): child is ReactElement<TabPanelProps> => {
-      if (React.isValidElement(child) && child.type === TabPanel) {
+    (child): child is ReactElement<TabProps> => {
+      if (React.isValidElement(child) && child.type === Tab) {
         return true;
       }
       console.warn(
-        "TabContainer component only accepts TabPanel components as children",
+        "TabNavigation component only accepts TabSection components as children",
       );
       return false;
     },
@@ -46,33 +34,54 @@ export function TabContainer({
 
   return (
     <div className={cn("flex gap-6", className)}>
-      <div className="bg-sidebar flex flex-col gap-2 rounded-lg p-4">
+      <TabSidebar>
         {validTabPanels.map((panel) => (
-          <TabButton
+          <TabViewButton
             key={panel.props.tabName}
             isActive={activeTabName === panel.props.tabName}
             tabName={panel.props.tabName}
             onSelect={setActiveTabName}
           />
         ))}
-      </div>
+      </TabSidebar>
       {activeTabPanel}
     </div>
   );
 }
 
-function TabButton({ tabName, isActive, onSelect }: TabButtonProps) {
+interface TabSidebarProps {
+  children:
+    | ReactElement<TabViewButtonProps>
+    | ReactElement<TabViewButtonProps>[];
+}
+
+function TabSidebar({ children }: TabSidebarProps) {
+  return (
+    <div className="flex flex-col gap-2 rounded-lg bg-sidebar p-4">
+      {children}
+    </div>
+  );
+}
+
+interface TabViewButtonProps {
+  tabName: string;
+  isActive: boolean;
+  onSelect: (tabName: string) => void;
+}
+
+function TabViewButton({ tabName, isActive, onSelect }: TabViewButtonProps) {
   const handleClick = () => {
     onSelect(tabName);
   };
 
   return (
     <button
+      type="button"
       className={cn(
-        "text-sidebar-accent-foreground flex items-center justify-between rounded-lg p-2 text-sm font-medium",
+        "flex items-center justify-between rounded-lg p-2 text-sm font-medium text-sidebar-accent-foreground",
         isActive
           ? "bg-sidebar-primary text-sidebar-primary-foreground"
-          : "hover:bg-sidebar-accent text-sidebar-accent-foreground",
+          : "text-sidebar-accent-foreground hover:bg-sidebar-accent",
       )}
       onClick={handleClick}
     >
@@ -81,7 +90,13 @@ function TabButton({ tabName, isActive, onSelect }: TabButtonProps) {
   );
 }
 
-export function TabPanel({ tabName, children, className }: TabPanelProps) {
+interface TabProps {
+  tabName: string;
+  children?: React.ReactNode;
+  className?: string;
+}
+
+export function Tab({ tabName, children, className }: TabProps) {
   return (
     <div className={cn("flex-1", className)}>
       <div className="mb-6 w-full space-y-4">
@@ -93,4 +108,4 @@ export function TabPanel({ tabName, children, className }: TabPanelProps) {
   );
 }
 
-TabPanel.displayName = "TabPanel";
+Tab.displayName = "Tab";

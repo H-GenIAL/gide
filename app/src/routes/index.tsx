@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MultiStepForm } from "@/components/ui/multi-step-form";
-import { RevisionStep, UploadStep, ExportStep } from "@/components/steps";
+import { StepNavigation } from "@/components/ui/step-navigation";
+import { RevisionStep, ImportStep, ExportStep } from "@/components/steps";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -9,11 +9,11 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="flex min-h-screen w-full flex-col px-10 py-20 md:px-20">
-      <MultiStepForm>
-        <UploadStep step={1} />
+      <StepNavigation>
+        <ImportStep step={1} />
         <RevisionStep step={2} />
         <ExportStep step={3} />
-      </MultiStepForm>
+      </StepNavigation>
     </main>
   );
 }
