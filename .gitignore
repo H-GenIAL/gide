@@ -71,3 +71,6 @@ coverage/
 dist
 dist-ssr
 *.local
+
+# Lock docx
+.~lock.*.docx#
