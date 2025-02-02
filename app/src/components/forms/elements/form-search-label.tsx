@@ -14,7 +14,7 @@ export function FormSearchLabel({ name, children }: FormSearchLabelProps) {
 
   const handleSearch = () => {
     const value = form.getValues(name);
-    setSearchKeyword("872.023.368");
+    setSearchKeyword("602.909.805");
   };
 
   return (
