@@ -15,7 +15,7 @@ export function PdfViewerProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function PdfViewer({ plugins = [], ...props }: ViewerProps) {
-  const { searchKeyword } = usePdfViewer();
+  const { searchKeyword, setSearchKeyword } = usePdfViewer();
   const searchPluginInstance = searchPlugin({
     onHighlightKeyword: (props) => {
       console.log(props);
@@ -23,6 +23,7 @@ export function PdfViewer({ plugins = [], ...props }: ViewerProps) {
         behavior: "smooth",
         block: "center",
       });
+      setSearchKeyword("");
     },
   });
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
@@ -30,10 +31,11 @@ export function PdfViewer({ plugins = [], ...props }: ViewerProps) {
   });
 
   useEffect(() => {
-    if (searchKeyword) {
+    console.log("searchKeyword", searchKeyword);
+    if (searchKeyword.trim() !== "") {
       searchPluginInstance.highlight(searchKeyword);
     }
-  }, [searchKeyword, searchPluginInstance]);
+  }, [searchKeyword]);
 
   return (
     <Viewer

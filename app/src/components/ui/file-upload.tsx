@@ -117,7 +117,7 @@ export const FileUpload = ({
                       layout
                       className="max-w-xs truncate text-base text-neutral-700 dark:text-neutral-300"
                     >
-                      {file.name}
+                      {file.name.split(".").slice(0, -1).join(".")}
                     </motion.p>
                     <div className="flex items-center gap-2">
                       <motion.div
@@ -138,16 +138,7 @@ export const FileUpload = ({
                     </div>
                   </div>
 
-                  <div className="mt-2 flex w-full flex-col items-start justify-between text-sm text-neutral-600 dark:text-neutral-400 md:flex-row md:items-center">
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="rounded-md bg-gray-100 px-1 py-0.5 dark:bg-neutral-800"
-                    >
-                      {file.type}
-                    </motion.p>
-
+                  <div className="mt-2 flex w-full flex-col items-start justify-end text-sm text-neutral-600 dark:text-neutral-400 md:flex-row md:items-center">
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
