@@ -15,7 +15,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Impôts"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -26,7 +26,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Taxe foncière"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -37,7 +37,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="TEOM"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -48,7 +48,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Locaux commerciaux"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -63,7 +63,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Impôts"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -74,7 +74,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Taxe foncière"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -85,7 +85,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="TEOM"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -96,7 +96,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Locaux commerciaux"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -111,7 +111,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Impôts"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -122,7 +122,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Taxe foncière"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -133,7 +133,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="TEOM"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -144,7 +144,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Locaux commerciaux"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -159,7 +159,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Impôts"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -170,7 +170,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Taxe foncière"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -181,7 +181,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="TEOM"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -192,7 +192,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Locaux commerciaux"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -207,7 +207,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Impôts"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -218,7 +218,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Taxe foncière"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -229,7 +229,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="TEOM"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -240,7 +240,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Locaux commerciaux"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -255,7 +255,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Impôts"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -266,7 +266,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Taxe foncière"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -277,7 +277,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="TEOM"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -288,7 +288,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Locaux commerciaux"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -303,7 +303,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion technique"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -314,7 +314,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion locative"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -325,7 +325,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion des loyers"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -336,7 +336,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion syndic"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -351,7 +351,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion technique"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -362,7 +362,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion locative"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -373,7 +373,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion des loyers"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -384,7 +384,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion syndic"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -399,7 +399,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion technique"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -410,7 +410,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion locative"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -421,7 +421,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion des loyers"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -432,7 +432,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Gestion syndic"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -447,7 +447,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Bailleur"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -458,7 +458,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Preneur"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -469,7 +469,7 @@ export function FeesTaxesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Non précisé"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -482,7 +482,7 @@ export function FeesTaxesForm() {
         render={({ field }) => (
           <SimpleCheckbox
             label="Fonds marketing"
-            defaultChecked={field.value === "true"}
+            defaultChecked={field.value}
             onChange={(checked) => field.onChange(checked.toString())}
           />
         )}

@@ -35,14 +35,15 @@ import { othersFormSchema } from "../forms/others-form";
 const formSchema = z.object({
   ...descriptionFormSchema.shape,
   ...partiesFormSchema.shape,
-  ...othersFormSchema.shape, // TODO: add other form schema
+  ...othersFormSchema.shape,
 });
 
 export function RevisionStep({ step }: StepProps) {
-  const { previousStep, nextStep } = useStepNavigation();
+  const { data, previousStep, nextStep } = useStepNavigation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     mode: "onSubmit",
+    defaultValues: formSchema.parse(data),
   });
 
   const { mutate: createDocument, isPending } = useMutation({

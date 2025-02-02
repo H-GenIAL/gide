@@ -18,13 +18,13 @@ export function YesNoRadioGroup({
     >
       <FormItem className="flex items-center space-x-2">
         <FormControl>
-          <RadioGroupItem value="true" />
+          <RadioGroupItem value="Oui" />
         </FormControl>
         <FormLabel>Oui</FormLabel>
       </FormItem>
       <FormItem className="flex items-center space-x-2">
         <FormControl>
-          <RadioGroupItem value="false" />
+          <RadioGroupItem value="Non" />
         </FormControl>
         <FormLabel>Non</FormLabel>
       </FormItem>

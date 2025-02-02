@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { SimpleCheckbox } from "./elements/checkbox";
 import { FormSearchLabel } from "./elements/form-search-label";
@@ -72,7 +73,7 @@ export function GuaranteesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Garantie caution solidaire"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -83,7 +84,7 @@ export function GuaranteesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Garantie autonome"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -94,7 +95,7 @@ export function GuaranteesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Autre garantie"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -109,7 +110,7 @@ export function GuaranteesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Société"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -120,7 +121,7 @@ export function GuaranteesForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Banque"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -149,7 +150,7 @@ export function GuaranteesForm() {
               Date d'expiration
             </FormSearchLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}

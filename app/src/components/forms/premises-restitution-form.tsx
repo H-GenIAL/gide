@@ -17,7 +17,7 @@ export function PremisesRestitutionForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Neuf"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -28,7 +28,7 @@ export function PremisesRestitutionForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Parfait état"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -39,7 +39,7 @@ export function PremisesRestitutionForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Bon état"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -50,7 +50,7 @@ export function PremisesRestitutionForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="État d'usage"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -119,6 +119,56 @@ export function PremisesRestitutionForm() {
             <FormSearchLabel name={field.name}>
               État des lieux d'entrée dans la dataroom
             </FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="edl_sortie_dataroom"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>
+              État des lieux de sortie dans la dataroom
+            </FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="remise_etat"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Remise en état</FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="autre"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Autre</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}

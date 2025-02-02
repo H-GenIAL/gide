@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { SimpleCheckbox } from "./elements/checkbox";
 import { FormSearchLabel } from "./elements/form-search-label";
@@ -18,7 +19,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Fixe"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -29,7 +30,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Paliers"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -40,7 +41,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Recette"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -138,7 +139,7 @@ export function RentForm() {
               Date d'indexation
             </FormSearchLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -225,7 +226,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Indice de base fixe"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -236,7 +237,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Indexation à la hausse uniquement"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -247,7 +248,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Plafond/Plancher"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -258,7 +259,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Risque de distorsion"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -269,7 +270,7 @@ export function RentForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Divisibilité de la clause d'indexation"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}

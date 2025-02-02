@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { FormSearchLabel } from "./elements/form-search-label";
 
@@ -18,7 +19,7 @@ export function DurationForm() {
               Date de signature
             </FormSearchLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -49,7 +50,7 @@ export function DurationForm() {
               Date de prise d'effet
             </FormSearchLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -77,7 +78,7 @@ export function DurationForm() {
               Terme du contrat de bail
             </FormSearchLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -108,7 +109,7 @@ export function DurationForm() {
               Prochaine faculté de sortie
             </FormSearchLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}

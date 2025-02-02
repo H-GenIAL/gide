@@ -141,7 +141,7 @@ export function SubleaseForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Entité première"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -152,7 +152,7 @@ export function SubleaseForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Entités successives"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}

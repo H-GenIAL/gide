@@ -27,14 +27,19 @@ const secondaryVariant = {
 };
 
 interface FileUploadProps {
+  maxFiles?: number;
   onChange?: (files: File[]) => void;
 }
 
-export const FileUpload = ({ onChange }: FileUploadProps) => {
+export const FileUpload = ({ maxFiles, onChange }: FileUploadProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (newFiles: File[]) => {
+    if (maxFiles && newFiles.length > maxFiles) {
+      return;
+    }
+
     setFiles((prevFiles) => [...prevFiles, ...newFiles]);
     onChange?.(newFiles);
   };

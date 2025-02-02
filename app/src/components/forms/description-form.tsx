@@ -8,7 +8,7 @@ import { FormSearchLabel } from "./elements/form-search-label";
 export const descriptionFormSchema = z.object({
   adresse: z.string().optional(),
   designation: z.string().optional(),
-  dest_loc_at: z.string().optional(),
+  dest_loc_act: z.string().optional(),
   clause_enseigne: z.string().optional(),
   exclusivite: z.string().optional(),
   non_concurrence: z.string().optional(),
@@ -46,10 +46,9 @@ export function DescriptionForm() {
           </FormItem>
         )}
       />
-
       <FormField
         control={form.control}
-        name="destination"
+        name="dest_loc_act"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
@@ -61,10 +60,9 @@ export function DescriptionForm() {
           </FormItem>
         )}
       />
-
       <FormField
         control={form.control}
-        name="clause"
+        name="clause_enseigne"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
@@ -79,22 +77,6 @@ export function DescriptionForm() {
           </FormItem>
         )}
       />
-
-      <FormField
-        control={form.control}
-        name="clause_reason"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>
-              Raison de la clause
-            </FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-
       <FormField
         control={form.control}
         name="exclusivite"
@@ -110,7 +92,6 @@ export function DescriptionForm() {
           </FormItem>
         )}
       />
-
       <FormField
         control={form.control}
         name="non_concurrence"
@@ -122,21 +103,6 @@ export function DescriptionForm() {
                 defaultValue={field.value}
                 onChange={field.onChange}
               />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="non_concurrence_reason"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>
-              Raison de la non-concurrence
-            </FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
             </FormControl>
           </FormItem>
         )}

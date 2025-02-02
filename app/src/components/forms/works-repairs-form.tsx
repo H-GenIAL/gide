@@ -15,7 +15,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Réparations"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -26,7 +26,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Mise en conformité"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -37,7 +37,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Vétusté"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -48,7 +48,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Équipements"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -63,7 +63,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Réparations"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -74,7 +74,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Mise en conformité"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -85,7 +85,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Vétusté"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -96,7 +96,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Équipements"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -111,7 +111,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Réparations"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -122,7 +122,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Mise en conformité"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -133,7 +133,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Vétusté"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -144,7 +144,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Équipements"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -159,7 +159,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Réparations"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -170,7 +170,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Mise en conformité"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -181,7 +181,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Vétusté"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -192,7 +192,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Équipements"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -207,7 +207,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Réparations"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -218,7 +218,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Mise en conformité"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -229,7 +229,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Vétusté"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -240,7 +240,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Équipements"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -255,7 +255,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Réparations"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -266,7 +266,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Mise en conformité"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -277,7 +277,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Vétusté"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}
@@ -288,7 +288,7 @@ export function WorksRepairsForm() {
           render={({ field }) => (
             <SimpleCheckbox
               label="Équipements"
-              defaultChecked={field.value === "true"}
+              defaultChecked={field.value}
               onChange={(checked) => field.onChange(checked.toString())}
             />
           )}

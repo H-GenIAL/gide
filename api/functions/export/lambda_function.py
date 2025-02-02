@@ -63,8 +63,8 @@ def replace_key_with_value(key, value):
     
     def callback(cell):
         if type == "yesno":
-            docx_replace_text(cell.paragraphs, f"${key}-yes", "☑" if value == "Oui" else "☐")
-            docx_replace_text(cell.paragraphs, f"${key}-no", "☐" if value == "Oui" else "☑")
+            docx_replace_text(cell.paragraphs, f"${key}-oui", "☑" if value == "Oui" else "☐")
+            docx_replace_text(cell.paragraphs, f"${key}-non", "☐" if value == "Oui" else "☑")
         elif type == "checkbox":
             docx_replace_text(cell.paragraphs, f"${key}", "☑" if value == "Oui" else "☐")
         else:
