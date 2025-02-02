@@ -5,9 +5,9 @@ import boto3
 import json
 import faiss
 import requests
+import pdfplumber
 import numpy as np
 import os
-from pdf_processing import process_pdf
 from create_database import MarkdownVectorizer
 from query_rag import generate_rag_response
 from json_storage_func import save_to_json, load_from_json
@@ -22,16 +22,33 @@ MODEL_EMB = "amazon.titan-embed-text-v2:0"
 
 answers_dict = dict()
 
+def convert_to_md(pdf_file):
+    """
+    Convertit un fichier en format Markdown (.md).
 
-def process_function():
+    Arguments:  
+    file_path : str -- Chemin du fichier à convertir.
 
-    print("Process PDF...")
-    process_pdf()
-    print("Done")
+    Returns:
+    None
+    """
+    md_content = ""
 
+    # Traitement du PDF
+    with pdfplumber.open(pdf_file) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text()
+            if text:
+                md_content += text + "\n\n"  # Ajoute une nouvelle ligne entre les pages
+    
+    return md_content
+
+def process_function(pdf_file):
+    print("Convert to md...")
+    content_md = convert_to_md(pdf_file)
     print("Vectorize...")
     vectorizer = MarkdownVectorizer(model_emb=MODEL_EMB)
-    chunks, vectors = vectorizer.process()
+    chunks, vectors = vectorizer.process_text(content_md)
     print("Base vectorisée !")
     return chunks, vectors
 

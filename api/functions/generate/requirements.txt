@@ -4,3 +4,4 @@ faiss-cpu
 requests
 numpy
 nltk 
+pdfplumber

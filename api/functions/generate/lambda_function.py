@@ -7,6 +7,16 @@ from main import process_function, query_iterate
 # 🔹 Chemin vers la base FAISS
 FAISS_INDEX_PATH = "faiss_index.bin"
 
+def parse_multipart_form(body, boundary):
+    """Parse multipart form data to extract PDF content"""
+    parts = body.split(b'--' + boundary)
+    for part in parts:
+        if b'Content-Type: application/pdf' in part:
+            # Find the PDF content after headers (separated by two newlines)
+            pdf_content = part.split(b'\r\n\r\n')[1].strip()
+            return pdf_content
+    return None
+
 def lambda_handler(event, context):
     """
     Lambda function to generate structured data from an uploaded PDF.
@@ -16,19 +26,27 @@ def lambda_handler(event, context):
         context (dict): The context object containing the runtime information.
     """
     try:
-        # Extract the PDF content from the multipart/form-data request
         if 'body' not in event:
             raise ValueError("No body found in the request")
 
-        # If the body is a string (which is common with API Gateway), parse it
-        if isinstance(event['body'], str):
-            # Check if the body is base64 encoded (API Gateway setting)
-            if event.get('isBase64Encoded', False):
-                pdf_content = base64.b64decode(event['body'])
+        # Handle multipart/form-data
+        content_type = event.get('headers', {}).get('content-type', '')
+        if 'multipart/form-data' in content_type:
+            # Extract boundary from content-type
+            boundary = content_type.split('boundary=')[1].encode()
+            
+            # Decode body if it's base64 encoded
+            body = base64.b64decode(event['body']) if event.get('isBase64Encoded', False) else event['body'].encode()
+            pdf_content = parse_multipart_form(body, boundary)
+            
+            if pdf_content is None:
+                raise ValueError("No PDF file found in form data")
+        else:
+            # Handle existing cases (direct PDF or base64)
+            if isinstance(event['body'], str):
+                pdf_content = base64.b64decode(event['body']) if event.get('isBase64Encoded', False) else event['body'].encode()
             else:
                 pdf_content = event['body']
-        else:
-            pdf_content = event['body']
 
         pdf_file = BytesIO(pdf_content)
         chunks, vectors = process_function(pdf_file)
