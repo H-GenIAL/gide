@@ -48,7 +48,7 @@ def process_function(pdf_file):
     content_md = convert_to_md(pdf_file)
     print("Vectorize...")
     vectorizer = MarkdownVectorizer(model_emb=MODEL_EMB)
-    chunks, vectors = vectorizer.process_text(content_md)
+    chunks, vectors = vectorizer.process(content_md)
     print("Base vectorisée !")
     return chunks, vectors
 
