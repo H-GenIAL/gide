@@ -4,7 +4,6 @@ import numpy as np
 import faiss  # Ajout de FAISS pour stockage des vecteurs
 import boto3
 import tiktoken
-from highlight_pdf import highlight_text_in_pdf
 import re
 
 bedrock_runtime = boto3.client("bedrock-runtime", region_name="us-west-2")
@@ -27,11 +26,16 @@ def search_knn(index, query_vector, n, k=5):
     return get_adjacent_numbers(indices[0], n)  # Retourne les indices des passages les plus pertinents
 
 
-def generate_rag_response(query, instruction, chunks, index, model_llm ="mistral.mistral-7b-instruct-v0:2", model_emb="amazon.titan-embed-text-v2:0", k=5, again=False):
+def generate_rag_response(query, instruction, chunks, index,  model_llm ="mistral.mistral-7b-instruct-v0:2", model_emb="amazon.titan-embed-text-v2:0", k=5, again=False, begin=False):
     """Génère une réponse augmentée avec FAISS + LLM (Amazon Bedrock)."""
     query_vector = encode_query(query, model_emb=model_emb)
-    retrieved_indices = search_knn(index, query_vector, len(chunks), k)
 
+    if begin:
+        retrieved_indices = range(16)
+    else:
+        retrieved_indices = search_knn(index, query_vector, len(chunks), k)
+
+    
     retrieved_texts = [chunks[i] for i in retrieved_indices]
 
     # Highlighter les chunks dans la question
@@ -40,17 +44,16 @@ def generate_rag_response(query, instruction, chunks, index, model_llm ="mistral
     # Construire le contexte pour la génération de réponse
     context = " ".join(retrieved_texts)
 
-    prompt = f"En utilisant les informations suivantes :\n\n{context}\n\n Reponds uniquement à cette question: {query} tout en suivant les instructions suivantes: {instruction}"
+    prompt = f"En tant qu'expert juridique spécialisé dans l'analyse de baux commerciaux français, examine attentivement l'extrait suivant d'un bail commercial et identifie précisément l'information demandée. Instruction importante : Réponds UNIQUEMENT avec la valeur demandée, sans explication ni commentaire. Extrait du bail à analyser : {context} \n Information recherchée : {query} \n Instruction : {instruction}"
 
     response = bedrock_runtime.invoke_model(
         modelId=model_llm,
         contentType="application/json",
         accept="application/json",
-        body=json.dumps({"prompt": prompt, "max_tokens": 60})
+        body=json.dumps({"prompt": prompt, "max_tokens": 100, "temperature": 0.3})
     )
 
     json_response = json.loads(response["body"].read())
-    print(json_response)
     rag_response = json_response['choices'][0]["message"]['content']
     stop_reason = json_response['choices'][0]['finish_reason']
 

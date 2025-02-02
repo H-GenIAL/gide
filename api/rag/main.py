@@ -11,9 +11,11 @@ from pdf_processing import process_pdf
 from create_database import MarkdownVectorizer
 from query_rag import generate_rag_response
 from json_storage_func import save_to_json, load_from_json
+import nltk
+nltk.download("punkt")
+from nltk.tokenize import sent_tokenize
 
-loaded_prompts = load_from_json("prompts_word2.json")
-
+loaded_prompts = load_from_json("prompts_word3.json")
 
 MODEL_LLM = "mistral.mistral-large-2407-v1:0"
 MODEL_EMB = "amazon.titan-embed-text-v2:0"
@@ -38,13 +40,17 @@ def query_iterate(index, chunks, model_emb= MODEL_EMB, model_llm=MODEL_LLM):
     for prompt in loaded_prompts:
         query = prompt["query"]
         instruction = prompt["instruction"]
-        response = generate_rag_response(query, instruction, chunks, index, model_llm=model_llm, model_emb=model_emb, k=5)
+
+        if prompt["id"] == "bailleur" or prompt["id"] == "preneur":
+            response = generate_rag_response(query, instruction, chunks, index, model_llm=model_llm, model_emb=model_emb, k=5, begin=True)
+        else:
+            response = generate_rag_response(query, instruction, chunks, index, model_llm=model_llm, model_emb=model_emb, k=5)
         #print("\n🔮 Réponse générée :")
     
         print(response)
         answers_dict[prompt["id"]] = response
         #print("Réponse sauvegardée !")
-
+        
     return answers_dict
 
 # 🔹 Chemin vers la base FAISS

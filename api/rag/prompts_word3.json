@@ -1,0 +1,102 @@
+[
+    {
+        "id": "bailleur",
+        "query": "Qui est le bailleur dans le contrat ? Recherchez l'entité juridique mentionnée avant ou après 'ci-après désigné bailleur', souvent une société avec un RCS.",
+        "instruction": "Réponds de façon concise avec le nom complet du bailleur et son numéro RCS s'il est mentionné."
+    },
+    {
+        "id": "preneur",
+        "query": "Qui est le preneur dans le contrat ? Recherchez l'entité juridique mentionnée avant ou après 'ci-après désigné le preneur', souvent une société avec un RCS.",
+        "instruction": "Réponds de façon concise avec le nom complet du preneur et son numéro RCS s'il est mentionné."
+    },
+    {
+        "id": "cession",
+        "query": "Recherche la clause de cession du droit au bail : le preneur d'origine peut-il céder son bail à un tiers ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'."
+    },
+    {
+        "id": "adresse",
+        "query": "Quelle est l'adresse exacte du bien loué ? Recherchez une adresse complète. Par exemple, numéro de rue et/ou nom de rue, code postal et ville. Exemple: commune de SAINT-RAPHAEL (83), 26 Pl. Sadi Carnot, 83700 Saint-Raphaël.",
+        "instruction": "Donne uniquement l'adresse complète du bien loué."
+    },
+    {
+        "id": "designation",
+        "query": "Quelle est la désignation précise des locaux loués dans le contrat ? Recherchez la section indiquant le numéro du local, sa surface en m² et toute information sur sa configuration.",
+        "instruction": "Indique la description complète des locaux tels qu'ils figurent dans le contrat."
+    },
+    {
+        "id": "dest_loc_act",
+        "query": "Quelle est la destination des locaux loués et les activités autorisées ?",
+        "instruction": "Décris la destination et les activités autorisées pour le local, en reprenant les termes exacts du contrat."
+    },
+    {
+        "id": "clause_enseigne",
+        "query": "Trouve la clause spécifique concernant l’enseigne. Le preneur est-il obligé d'exploiter sous une enseigne spécifique ou doit-il obtenir une autorisation pour en changer ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, indique les obligations ou restrictions liées au changement d’enseigne."
+    },
+    {
+        "id": "exclusivite",
+        "query": "Le contrat prévoit-il une exclusivité pour certaines activités ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les activités concernées."
+    },
+    {
+        "id": "non_concurrence",
+        "query": "Cherche la clause de non-concurrence. Le preneur s'interdit-il d'exploiter une activité similaire dans un périmètre défini ?",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise la portée géographique et les restrictions exactes."
+    },
+    {
+        "id": "date_sign",
+        "query": "Quelle est la date de signature du bail ? Recherchez une date exprimée sous le format JJ/MM/AAAA en fin de bail dans un extrait du type : FAIT PAR DOCUSIGN LE DATE EN UN EXEMPLAIRE DÉMATÉRIALISÉ ou FAIT À PARIS LE DATE.",
+        "instruction": "Donne uniquement la date sous le format JJ/MM/AAAA."
+    },
+    {
+        "id": "pinel",
+        "query": "La Loi Pinel (loi n°2014-626 du 18 juin 2014) est-elle applicable ?",
+        "instruction": "Réponds par 'Applicable' ou 'Non applicable'."
+    },
+    {
+        "id": "date_prise_effet",
+        "query": "Quelle est la date de prise d'effet du bail ou date d'effet du bail ?",
+        "instruction": "Réponds avec juste la date."
+    },
+    {
+        "id": "duree_bail",
+        "query": "Quelle est la durée du bail initialement prévue dans le contrat ? Vérifiez si la durée est exprimée en années.",
+        "instruction": "Réponds uniquement avec la durée en années."
+    },
+    {
+        "id": "periode_ferme",
+        "query": "Quelle est la période ferme du bail ? Vérifiez si le bail précise une durée minimale d'engagement sans possibilité de résiliation anticipée.",
+        "instruction": "Indique la durée en années. Si aucune période ferme n'est précisée, indique 'Non précisé'."
+    },
+    {
+        "id": "clause_spe_duree_bail_renouv",
+        "query": "Le bail contient-il une clause spécifique sur la durée du bail renouvelé ? Recherchez si des conditions particulières sont mentionnées.",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, détaille les conditions de renouvellement."
+    },
+    {
+        "id": "loyer_annuel_init",
+        "query": "Quel est le montant du loyer annuel initial (HT HC) ? Recherchez le montant exprimé en euros.",
+        "instruction": "Donne uniquement le montant en euros, sans texte supplémentaire."
+    },
+    {
+        "id": "loyer_annuel_cours",
+        "query": "Quel est le montant du loyer annuel en cours (HT HC) ? Par défaut, reprend le loyer annuel initial. Ne pas confondre avec depot de garantie.",
+        "instruction": "Donne uniquement le montant en euros, sans texte supplémentaire."
+    },
+    {
+        "id": "clause_index",
+        "query": "Le contrat contient-il une clause d'indexation du loyer ? Recherchez si un indice de référence est mentionné (ex: ICC, ILC).",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise l'indice de référence utilisé."
+    },
+    {
+        "id": "depot_garantie",
+        "query": "Quel est le montant du dépôt de garantie ? Recherchez une somme en euros correspondant à plusieurs mois de loyer.",
+        "instruction": "Donne uniquement le montant en euros, sans texte supplémentaire."
+    },
+    {
+        "id": "facu_trav",
+        "query": "Le preneur a-t-il la faculté de réaliser des travaux dans les locaux loués ? Recherchez toute mention de travaux autorisés ou nécessitant l'accord du bailleur.",
+        "instruction": "Réponds par 'Oui' ou 'Non'. Si oui, précise les conditions mentionnées dans le contrat."
+    }
+]
