@@ -75,14 +75,14 @@ The project uses two main Lambda functions:
    - Extracts and analyzes relevant information using LLM
    - Structures data for audit report generation
    - Memory: 1024 MB (recommended)
-   - Timeout: 30 seconds
+   - Timeout: 10 minutes (recommended)
 
 2. **Export Function** (`/api/functions/export`)
    - Generates Word documents based on templates
    - Formats extracted data into structured audit reports
    - Creates professional-grade documentation
    - Memory: 512 MB (recommended)
-   - Timeout: 15 seconds
+   - Timeout: 30 seconds (recommended)
 
 ### API Gateway Setup
 
