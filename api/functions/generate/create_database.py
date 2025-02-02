@@ -23,6 +23,7 @@ class MarkdownVectorizer:
             if file.lower().endswith(".md"):
                 return os.path.join(directory, file)
         
+        print("❌ Aucun fichier Markdown trouvé dans le répertoire.")
         return None  # Aucun fichier Markdown trouvé
 
     def load_markdown(self, md_file):
@@ -117,18 +118,9 @@ class MarkdownVectorizer:
             index = self.reset_faiss_index(dimension)
         return index
 
-    def process(self):
+    def process(self, md_content):
         """Exécute toutes les étapes : trouver, charger, découper, vectoriser, et stocker dans FAISS."""
-        md_file = self.find_first_md_file()
-        if not md_file:
-            print("❌ Aucun fichier Markdown trouvé dans le répertoire.")
-            return None, None
-
-        print(f"📄 Fichier Markdown trouvé : {md_file}")
-
-        md_content = self.load_markdown(md_file)
-        print(f"🔹 Aperçu du texte :\n{md_content[:400]}...\n")
-
+       
         chunks = self.split_text(md_content)
         print(f"✅ {len(chunks)} chunks générés.")
 
