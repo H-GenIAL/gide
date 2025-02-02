@@ -1,11 +1,18 @@
-# GIDE - Guided Interactive Document Experience
+# GenIAL
 
-GIDE is a web application that provides an interactive document experience using RAG (Retrieval-Augmented Generation) technology. It allows users to upload and analyze PDF documents, with a modern React frontend and AWS Lambda-powered backend.
+GenIAL is an innovative document analysis tool developed during a hackathon for Gide, a leading international law firm. The application streamlines the audit process by automatically analyzing PDF documents using Large Language Models (LLM) and generating structured audit reports in Word format based on predefined templates.
+
+## Overview
+
+The application simplifies the document review process through:
+1. **PDF Upload**: Users can easily upload PDF documents for analysis
+2. **Intelligent Processing**: Utilizes RAG (Retrieval-Augmented Generation) technology to comprehend and extract relevant information
+3. **Automated Reporting**: Generates professional Word documents following Gide's audit template format
 
 ## Project Structure
 
 ```
-gide/
+genial/
 ├── app/                    # Frontend React application
 │   ├── src/
 │   │   ├── components/    # React components
@@ -17,7 +24,7 @@ gide/
 ├── api/                    # Backend AWS Lambda functions
 │   └── functions/
 │       ├── generate/      # RAG generation Lambda
-│       └── export/        # Data export Lambda
+│       └── export/        # Word document export Lambda
 │
 └── venv/                  # Python virtual environment
 ```
@@ -64,14 +71,16 @@ pip install -r requirements.txt
 The project uses two main Lambda functions:
 
 1. **Generate Function** (`/api/functions/generate`)
-   - Handles the RAG (Retrieval-Augmented Generation) processing
-   - Processes PDF documents and generates responses
+   - Processes uploaded PDFs using RAG technology
+   - Extracts and analyzes relevant information using LLM
+   - Structures data for audit report generation
    - Memory: 1024 MB (recommended)
    - Timeout: 30 seconds
 
 2. **Export Function** (`/api/functions/export`)
-   - Handles data export functionality
-   - Processes and formats data for export
+   - Generates Word documents based on templates
+   - Formats extracted data into structured audit reports
+   - Creates professional-grade documentation
    - Memory: 512 MB (recommended)
    - Timeout: 15 seconds
 
@@ -79,8 +88,8 @@ The project uses two main Lambda functions:
 
 1. Create a new REST API in API Gateway
 2. Create the following endpoints:
-   - POST `/generate` → Generate Lambda
-   - POST `/export` → Export Lambda
+   - POST `/generate` → Generate Lambda (PDF processing)
+   - POST `/export` → Export Lambda (Word document generation)
 3. Enable CORS for the frontend domain
 4. Deploy the API to a stage (e.g., 'prod')
 
@@ -89,30 +98,29 @@ The project uses two main Lambda functions:
 ### Frontend
 
 - Built with React 18, TypeScript, and Vite
-- Uses TanStack Router for routing
-- PDF viewing capabilities with `@react-pdf-viewer`
+- Interactive PDF viewer with `@react-pdf-viewer`
 - Form handling with `react-hook-form` and Zod validation
 - Modern UI components using Radix UI
-- Styling with Tailwind CSS
+- Responsive design with Tailwind CSS
 
 ### Backend
 
-The backend uses a RAG (Retrieval-Augmented Generation) architecture:
+The backend implements a sophisticated document processing pipeline:
 
-1. **Document Processing**
-   - PDFs are uploaded through the frontend
-   - Documents are processed and chunked for efficient retrieval
-   - Text is extracted and embedded for semantic search
+1. **Document Analysis**
+   - PDF document upload and text extraction
+   - Document segmentation for detailed analysis
+   - Intelligent content processing using RAG technology
 
-2. **RAG Pipeline**
-   - Uses vector embeddings for semantic search
-   - Retrieves relevant context from the document
-   - Generates responses based on the retrieved context
+2. **LLM Processing**
+   - Context-aware information extraction
+   - Structured data generation for audit reports
+   - Quality assurance checks on extracted information
 
-3. **API Communication**
-   - Frontend communicates with backend through REST API
-   - AWS API Gateway handles request routing
-   - Lambda functions process requests asynchronously
+3. **Report Generation**
+   - Template-based Word document creation
+   - Professional formatting and styling
+   - Consistent with Gide's documentation standards
 
 ## Environment Variables
 
@@ -128,10 +136,11 @@ Configure through AWS Lambda environment variables:
 
 ## Security Considerations
 
-- API keys are stored securely in AWS Lambda environment variables
-- CORS is configured to allow only specific origins
-- API Gateway handles request authentication
-- File uploads are validated and sanitized
+- Secure document handling and processing
+- API keys stored securely in AWS Lambda environment variables
+- CORS configuration for protected endpoints
+- Input validation for all file uploads
+- Secure document storage and transmission
 
 ## Development Workflow
 
@@ -140,6 +149,10 @@ Configure through AWS Lambda environment variables:
 3. Build for production using `pnpm build`
 4. Deploy Lambda functions through AWS Console or CLI
 5. Update API Gateway configuration if needed
+
+## Hackathon Context
+
+This project was developed during a hackathon in collaboration with Gide. It addresses the specific challenge of automating and streamlining the document audit process, demonstrating the potential of AI-powered solutions in legal document processing.
 
 ## Contributing
 
