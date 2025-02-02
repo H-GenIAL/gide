@@ -1,0 +1,14 @@
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
+GIDE_RAG_DIRECTORY = PROJECT_ROOT / "gide_rag/"
+CONFIG_DIRECTORY = GIDE_RAG_DIRECTORY / "config/"
+TEST_DATA_DIR = GIDE_RAG_DIRECTORY / "test_data"
+DATA_DIR = PROJECT_ROOT / "data/"
+
+## Chroma
+CHROMA_PATH = DATA_DIR / "vecdb/"
+CHROMA_HOST = "localhost"
+CHROMA_PORT = 8030
+CHROMA_TEXT_COLLECTION = "{}_COLLECTION"
+CHROMA_IMAGE_COLLECTION = "{}_IMG_COLLECTION"

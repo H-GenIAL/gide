@@ -1,1 +1,6 @@
-# languages.py : Constantes pour les langues supportées
+from enum import Enum
+
+
+class Language(str, Enum):
+    EN = "en"
+    FR = "fr"

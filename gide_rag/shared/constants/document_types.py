@@ -1,1 +1,5 @@
-# document_types.py : Constantes et mappings pour les types de documents
+from enum import Enum
+
+
+class DocumentType(str, Enum):
+    BAIL_IMMOBILIER = "bail_immo"

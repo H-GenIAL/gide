@@ -1,0 +1,22 @@
+meta {
+  name: Export a Lease Form
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/forms/lease/export
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "bailleur": "SCI Les Trois Chênes",
+    "preneur": "Entreprise Martin & Co",
+    "cession": "non",
+    "cession_raison": "Sans objet",
+    "adresse": "123 Avenue des Fleurs, 75001 Paris",
+    "designation": "oui"
+  }
+}

@@ -1,0 +1,25 @@
+name: "Preneur figurant dans le Bail"
+id: "preneur"
+type: "text"
+unit: 0
+top_k: 1
+bm25_query:
+  en: "tenant name lease party"
+  fr: "preneur nom bail partie"
+semantic_query:
+  en: "What is the name of the tenant (lessee) indicated in the lease?"
+  fr: "Quel est le nom du preneur figurant dans le bail?"
+retriever_strategy:
+  semantic: 0
+  bm25: 1
+generator:
+  query:
+    en: "What is the name of the tenant in the lease?"
+    fr: "Quel est le nom du preneur dans le bail?"
+  instruction:
+    en: "- The tenant is the party taking the lease. Provide the raw name as stated in the lease."
+    fr: "- Le preneur est la personne ou l'entité qui prend le bail. Fournis le nom tel qu'il apparaît dans le bail."
+  conf:
+    max_tokens: 30
+    temperature: 0.1
+    top_p: 0.95
