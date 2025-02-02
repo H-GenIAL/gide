@@ -1,51 +1,53 @@
-import { z } from "zod";
 import { useFormContext } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { YesNoRadioGroup } from "@/components/forms/elements/yes-no-radiogroup";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
+import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { FormSearchLabel } from "./elements/form-search-label";
 
-export const partiesFormSchema = z.object({
-  bailleur: z.string().optional(),
-  preneur: z.string().optional(),
-  cession: z.string().optional(),
-});
-
-export function PartiesForm() {
+export function RelationsForm() {
   const form = useFormContext();
 
   return (
     <div className="flex flex-col gap-4">
       <FormField
         control={form.control}
-        name="bailleur"
+        name="relations_impayes"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Bailleur</FormSearchLabel>
+            <FormSearchLabel name={field.name}>Impayés</FormSearchLabel>
             <FormControl>
-              <Input {...field} />
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
             </FormControl>
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
-        name="preneur"
+        name="relations_ech_signif"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Preneur</FormSearchLabel>
+            <FormSearchLabel name={field.name}>
+              Échanges significatifs
+            </FormSearchLabel>
             <FormControl>
-              <Input {...field} />
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
             </FormControl>
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
-        name="cession"
+        name="relations_precontentieux"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Cession</FormSearchLabel>
+            <FormSearchLabel name={field.name}>Précontentieux</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}

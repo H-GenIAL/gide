@@ -1,51 +1,55 @@
-import { z } from "zod";
 import { useFormContext } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { YesNoRadioGroup } from "@/components/forms/elements/yes-no-radiogroup";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
+import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { FormSearchLabel } from "./elements/form-search-label";
 
-export const partiesFormSchema = z.object({
-  bailleur: z.string().optional(),
-  preneur: z.string().optional(),
-  cession: z.string().optional(),
-});
-
-export function PartiesForm() {
+export function AccompanimentForm() {
   const form = useFormContext();
 
   return (
     <div className="flex flex-col gap-4">
       <FormField
         control={form.control}
-        name="bailleur"
+        name="franchise_reduct_loyer"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Bailleur</FormSearchLabel>
+            <FormSearchLabel name={field.name}>
+              Franchise/Réduction de loyer
+            </FormSearchLabel>
             <FormControl>
-              <Input {...field} />
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
             </FormControl>
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
-        name="preneur"
+        name="side_letter_tva"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Preneur</FormSearchLabel>
+            <FormSearchLabel name={field.name}>Side letter TVA</FormSearchLabel>
             <FormControl>
-              <Input {...field} />
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
             </FormControl>
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
-        name="cession"
+        name="autres_mesures_accomp"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Cession</FormSearchLabel>
+            <FormSearchLabel name={field.name}>
+              Autres mesures d'accompagnement
+            </FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}

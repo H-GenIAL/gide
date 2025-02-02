@@ -1,47 +1,24 @@
-import { z } from "zod";
 import { useFormContext } from "react-hook-form";
-import { YesNoRadioGroup } from "@/components/forms/elements/yes-no-radiogroup";
-import { Textarea } from "@/components/ui/textarea";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { FormSearchLabel } from "./elements/form-search-label";
 
-export const descriptionFormSchema = z.object({
-  adresse: z.string().optional(),
-  designation: z.string().optional(),
-  dest_loc_at: z.string().optional(),
-  clause_enseigne: z.string().optional(),
-  exclusivite: z.string().optional(),
-  non_concurrence: z.string().optional(),
-  classemt_loc_erp: z.string().optional(),
-});
-
-export function DescriptionForm() {
+export function DurationForm() {
   const form = useFormContext();
 
   return (
     <div className="flex flex-col gap-4">
       <FormField
         control={form.control}
-        name="adresse"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>Adresse</FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="designation"
+        name="date_sign"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
-              Désignation des Locaux Loués
+              Date de signature
             </FormSearchLabel>
             <FormControl>
-              <Textarea {...field} />
+              <Input type="date" {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -49,27 +26,10 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="destination"
+        name="pinel"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>
-              Destination des Locaux Loués et activités autorisés
-            </FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="clause"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>
-              Clause d'enseigne
-            </FormSearchLabel>
+            <FormSearchLabel name={field.name}>Pinel</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -82,14 +42,14 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="clause_reason"
+        name="date_prise_effet"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
-              Raison de la clause
+              Date de prise d'effet
             </FormSearchLabel>
             <FormControl>
-              <Textarea {...field} />
+              <Input type="date" {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -97,10 +57,38 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="exclusivite"
+        name="duree_bail"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Exclusivité</FormSearchLabel>
+            <FormSearchLabel name={field.name}>Durée du bail</FormSearchLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="terme_contrat_bail"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>
+              Terme du contrat de bail
+            </FormSearchLabel>
+            <FormControl>
+              <Input type="date" {...field} />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="periode_ferme"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Période ferme</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -113,15 +101,14 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="non_concurrence"
+        name="pro_fac_sortie"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Non-concurrence</FormSearchLabel>
+            <FormSearchLabel name={field.name}>
+              Prochaine faculté de sortie
+            </FormSearchLabel>
             <FormControl>
-              <YesNoRadioGroup
-                defaultValue={field.value}
-                onChange={field.onChange}
-              />
+              <Input type="date" {...field} />
             </FormControl>
           </FormItem>
         )}
@@ -129,14 +116,30 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="non_concurrence_reason"
+        name="preavis_min"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Préavis minimum</FormSearchLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="clause_spe_duree_bail_renouv"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
-              Raison de la non-concurrence
+              Clause spécifique durée bail renouvellement
             </FormSearchLabel>
             <FormControl>
-              <Textarea {...field} />
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
             </FormControl>
           </FormItem>
         )}

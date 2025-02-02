@@ -14,13 +14,28 @@ import {
   PartiesForm,
   descriptionFormSchema,
   DescriptionForm,
+  DurationForm,
+  RentForm,
+  AccompanimentForm,
+  GuaranteesForm,
+  FeesTaxesForm,
+  WorksRepairsForm,
+  DestructionForm,
+  PremisesRestitutionForm,
+  SubleaseForm,
+  PreemptionForm,
+  StipulationsForm,
+  RelationsForm,
+  CommentsForm,
 } from "@/components/forms";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { PdfViewerProvider, PdfViewer } from "@/components/ui/pdf-viewer";
+import { othersFormSchema } from "../forms/others-form";
 
 const formSchema = z.object({
   ...descriptionFormSchema.shape,
   ...partiesFormSchema.shape,
+  ...othersFormSchema.shape, // TODO: add other form schema
 });
 
 export function RevisionStep({ step }: StepProps) {
@@ -105,21 +120,47 @@ export function RevisionStep({ step }: StepProps) {
                   <Tab tabName="Description des locaux loués">
                     <DescriptionForm />
                   </Tab>
-                  <Tab tabName="Durée" />
-                  <Tab tabName="Loyer" />
-                  <Tab tabName="Mesures d'accompagnement" />
-                  <Tab tabName="Garanties" />
-                  <Tab tabName="Honoraires, impots, taxes et assurance du bailleur" />
-                  <Tab tabName="Travaux - réparations - remplacements" />
-                  <Tab tabName="Autorisations de travaux" />
-                  <Tab tabName="Restitution des locaux loués" />
-                  <Tab tabName="Sous-location / Location-gerance / Domiciliation / Cession" />
-                  <Tab tabName="Droit de préemption / Droit de préférence" />
-                  <Tab tabName="Environnement" />
-                  <Tab tabName="Stipulations intuitu personae / Renonciations" />
-                  <Tab tabName="Relations avec le preneur" />
-                  <Tab tabName="Commentaires" />
-                  <Tab tabName="Documents revus" />
+                  <Tab tabName="Durée">
+                    <DurationForm />
+                  </Tab>
+                  <Tab tabName="Loyer">
+                    <RentForm />
+                  </Tab>
+                  <Tab tabName="Mesures d'accompagnement">
+                    <AccompanimentForm />
+                  </Tab>
+                  <Tab tabName="Garanties">
+                    <GuaranteesForm />
+                  </Tab>
+                  <Tab tabName="Honoraires, impots, taxes et assurance du bailleur">
+                    <FeesTaxesForm />
+                  </Tab>
+                  <Tab tabName="Travaux - réparations - remplacements">
+                    <WorksRepairsForm />
+                  </Tab>
+                  <Tab tabName="Autorisations de travaux">
+                    <DestructionForm />
+                  </Tab>
+                  <Tab tabName="Restitution des locaux loués">
+                    <PremisesRestitutionForm />
+                  </Tab>
+                  <Tab tabName="Sous-location / Location-gerance / Domiciliation / Cession">
+                    <SubleaseForm />
+                  </Tab>
+                  <Tab tabName="Droit de préemption / Droit de préférence">
+                    <PreemptionForm />
+                  </Tab>
+                  <Tab tabName="Environnement"></Tab>
+                  <Tab tabName="Stipulations intuitu personae / Renonciations">
+                    <StipulationsForm />
+                  </Tab>
+                  <Tab tabName="Relations avec le preneur">
+                    <RelationsForm />
+                  </Tab>
+                  <Tab tabName="Commentaires">
+                    <CommentsForm />
+                  </Tab>
+                  <Tab tabName="Documents revus"></Tab>
                 </TabNavigation>
                 <div className="flex flex-col gap-4">
                   <div className="sticky top-0 h-[600px] overflow-clip">

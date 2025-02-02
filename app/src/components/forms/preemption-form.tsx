@@ -1,74 +1,20 @@
-import { z } from "zod";
 import { useFormContext } from "react-hook-form";
-import { YesNoRadioGroup } from "@/components/forms/elements/yes-no-radiogroup";
-import { Textarea } from "@/components/ui/textarea";
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
+import { YesNoRadioGroup } from "./elements/yes-no-radiogroup";
 import { FormSearchLabel } from "./elements/form-search-label";
 
-export const descriptionFormSchema = z.object({
-  adresse: z.string().optional(),
-  designation: z.string().optional(),
-  dest_loc_at: z.string().optional(),
-  clause_enseigne: z.string().optional(),
-  exclusivite: z.string().optional(),
-  non_concurrence: z.string().optional(),
-  classemt_loc_erp: z.string().optional(),
-});
-
-export function DescriptionForm() {
+export function PreemptionForm() {
   const form = useFormContext();
 
   return (
     <div className="flex flex-col gap-4">
       <FormField
         control={form.control}
-        name="adresse"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>Adresse</FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="designation"
+        name="droit_pref_b_app"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
-              Désignation des Locaux Loués
-            </FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="destination"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>
-              Destination des Locaux Loués et activités autorisés
-            </FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="clause"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>
-              Clause d'enseigne
+              Droit de préférence du bailleur sur les appartements
             </FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
@@ -82,25 +28,12 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="clause_reason"
+        name="droit_pref_b_loc_loues"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
-              Raison de la clause
+              Droit de préférence du bailleur sur les locaux loués
             </FormSearchLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
-        name="exclusivite"
-        render={({ field }) => (
-          <FormItem>
-            <FormSearchLabel name={field.name}>Exclusivité</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -113,10 +46,12 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="non_concurrence"
+        name="droit_pref_b_immeuble"
         render={({ field }) => (
           <FormItem>
-            <FormSearchLabel name={field.name}>Non-concurrence</FormSearchLabel>
+            <FormSearchLabel name={field.name}>
+              Droit de préférence du bailleur sur l'immeuble
+            </FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -129,14 +64,117 @@ export function DescriptionForm() {
 
       <FormField
         control={form.control}
-        name="non_concurrence_reason"
+        name="droit_pref_p_fonds_com"
         render={({ field }) => (
           <FormItem>
             <FormSearchLabel name={field.name}>
-              Raison de la non-concurrence
+              Droit de préférence du preneur sur le fonds de commerce
             </FormSearchLabel>
             <FormControl>
-              <Textarea {...field} />
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="annex_dta"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Annexe DTA</FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="annex_er"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Annexe ER</FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="annex_dpe"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>Annexe DPE</FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="annex_envir"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>
+              Annexe environnementale
+            </FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="decret_terti_applicable"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>
+              Décret tertiaire applicable
+            </FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
+            </FormControl>
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={form.control}
+        name="icpe"
+        render={({ field }) => (
+          <FormItem>
+            <FormSearchLabel name={field.name}>ICPE</FormSearchLabel>
+            <FormControl>
+              <YesNoRadioGroup
+                defaultValue={field.value}
+                onChange={field.onChange}
+              />
             </FormControl>
           </FormItem>
         )}
