@@ -1,0 +1,6 @@
+tiktoken
+boto3
+faiss-cpu
+requests
+numpy
+nltk 

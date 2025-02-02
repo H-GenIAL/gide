@@ -1,7 +1,11 @@
 import json
 import base64
-import PyPDF2
+import faiss
 from io import BytesIO
+from main import process_function, query_iterate
+
+# 🔹 Chemin vers la base FAISS
+FAISS_INDEX_PATH = "faiss_index.bin"
 
 def lambda_handler(event, context):
     """
@@ -28,13 +32,9 @@ def lambda_handler(event, context):
 
         pdf_file = BytesIO(pdf_content)
         chunks, vectors = process_function(pdf_file)
-        save_to_json(chunks, "chunks.json")
         index = faiss.read_index(FAISS_INDEX_PATH)
-        chunks = load_from_json("chunks.json")
-        query_iterate(index, chunks)
+        answers_dict = query_iterate(index, chunks)
         json_data = json.dumps(answers_dict)
-        
-        # TODO: Implement the logic to generate the structured data from the PDF
 
         return {
             'statusCode': 200,
