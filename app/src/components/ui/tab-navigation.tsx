@@ -57,7 +57,7 @@ interface TabSidebarProps {
 
 function TabSidebar({ children }: TabSidebarProps) {
   return (
-    <div className="flex flex-col gap-2 rounded-lg bg-sidebar p-4">
+    <div className="flex max-w-64 flex-col gap-2 rounded-lg bg-sidebar p-4">
       {children}
     </div>
   );
@@ -78,7 +78,7 @@ function TabViewButton({ tabName, isActive, onSelect }: TabViewButtonProps) {
     <button
       type="button"
       className={cn(
-        "flex items-center justify-between rounded-lg p-2 text-sm font-medium text-sidebar-accent-foreground",
+        "flex items-center rounded-lg p-2 text-left text-sm font-medium text-sidebar-accent-foreground",
         isActive
           ? "bg-sidebar-primary text-sidebar-primary-foreground"
           : "text-sidebar-accent-foreground hover:bg-sidebar-accent",

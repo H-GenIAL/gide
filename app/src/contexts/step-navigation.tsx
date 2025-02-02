@@ -17,5 +17,13 @@ export const StepNavigationContext = createContext<StepNavigationContextType>({
 });
 
 export function useStepNavigation() {
-  return useContext(StepNavigationContext);
+  const context = useContext(StepNavigationContext);
+
+  if (!context) {
+    throw new Error(
+      "useStepNavigation must be used within a StepNavigationProvider",
+    );
+  }
+
+  return context;
 }

@@ -10,13 +10,13 @@ import { useStepNavigation } from "@/contexts/step-navigation";
 import { StepProps, Step } from "@/components/ui/step-navigation";
 import { Form } from "@/components/ui/form";
 import {
-  descriptionFormSchema,
-  DescriptionForm,
-} from "@/components/forms/description-form";
-import {
   partiesFormSchema,
   PartiesForm,
-} from "@/components/forms/parties-form";
+  descriptionFormSchema,
+  DescriptionForm,
+} from "@/components/forms";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { PdfViewerProvider, PdfViewer } from "@/components/ui/pdf-viewer";
 
 const formSchema = z.object({
   ...descriptionFormSchema.shape,
@@ -96,29 +96,38 @@ export function RevisionStep({ step }: StepProps) {
               </Button>
             </div>
             <Separator />
-            <TabNavigation initialTabName="Parties" className="flex-1">
-              <Tab tabName="Parties">
-                <PartiesForm />
-              </Tab>
-              <Tab tabName="Description des locaux loués">
-                <DescriptionForm />
-              </Tab>
-              <Tab tabName="Durée" />
-              <Tab tabName="Loyer" />
-              <Tab tabName="Mesures d'accompagnement" />
-              <Tab tabName="Garanties" />
-              <Tab tabName="Honoraires, impots, taxes et assurance du bailleur" />
-              <Tab tabName="Travaux - réparations - remplacements" />
-              <Tab tabName="Autorisations de travaux" />
-              <Tab tabName="Restitution des locaux loués" />
-              <Tab tabName="Sous-location / Location-gerance / Domiciliation / Cession" />
-              <Tab tabName="Droit de préemption / Droit de préférence" />
-              <Tab tabName="Environnement" />
-              <Tab tabName="Stipulations intuitu personae / Renonciations" />
-              <Tab tabName="Relations avec le preneur" />
-              <Tab tabName="Commentaires" />
-              <Tab tabName="Documents revus" />
-            </TabNavigation>
+            <div className="grid grid-cols-[1fr_0.5fr] gap-4">
+              <PdfViewerProvider>
+                <TabNavigation initialTabName="Parties">
+                  <Tab tabName="Parties">
+                    <PartiesForm />
+                  </Tab>
+                  <Tab tabName="Description des locaux loués">
+                    <DescriptionForm />
+                  </Tab>
+                  <Tab tabName="Durée" />
+                  <Tab tabName="Loyer" />
+                  <Tab tabName="Mesures d'accompagnement" />
+                  <Tab tabName="Garanties" />
+                  <Tab tabName="Honoraires, impots, taxes et assurance du bailleur" />
+                  <Tab tabName="Travaux - réparations - remplacements" />
+                  <Tab tabName="Autorisations de travaux" />
+                  <Tab tabName="Restitution des locaux loués" />
+                  <Tab tabName="Sous-location / Location-gerance / Domiciliation / Cession" />
+                  <Tab tabName="Droit de préemption / Droit de préférence" />
+                  <Tab tabName="Environnement" />
+                  <Tab tabName="Stipulations intuitu personae / Renonciations" />
+                  <Tab tabName="Relations avec le preneur" />
+                  <Tab tabName="Commentaires" />
+                  <Tab tabName="Documents revus" />
+                </TabNavigation>
+                <div className="flex flex-col gap-4">
+                  <div className="sticky top-0 h-[600px] overflow-clip">
+                    <PdfViewer fileUrl="/example.pdf" />
+                  </div>
+                </div>
+              </PdfViewerProvider>
+            </div>
           </div>
         </Step>
       </form>

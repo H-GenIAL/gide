@@ -23,6 +23,7 @@ app/
 - Tanstack Router
 - React Hook Form
 - Zod
+- React PDF Viewer
 
 ## Quick Start
 
@@ -33,6 +34,11 @@ app/
     ```bash
     npm install
     ```
+
+> Problem with installation on Apple M1
+> If the installed version of `pdfjs-dist` requires the canvas package which has issues with Apple M1. You can fix it by installing the canvas dependencies manually.
+> The following lines show how to do it with Brew, a popular packages manager for macOS:
+> $ brew install pkg-config cairo pango
 
 2. **Create a `.env` file**
 

@@ -3,12 +3,8 @@ import { useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { YesNoRadioGroup } from "@/components/forms/elements/yes-no-radiogroup";
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-} from "@/components/ui/form";
+import { FormField, FormItem, FormControl } from "@/components/ui/form";
+import { FormSearchLabel } from "./elements/form-search-label";
 
 export const partiesFormSchema = z.object({
   bailleur: z.string().optional(),
@@ -27,7 +23,7 @@ export function PartiesForm() {
         name="bailleur"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Bailleur</FormLabel>
+            <FormSearchLabel name={field.name}>Bailleur</FormSearchLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -40,7 +36,7 @@ export function PartiesForm() {
         name="preneur"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Preneur</FormLabel>
+            <FormSearchLabel name={field.name}>Preneur</FormSearchLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -53,9 +49,9 @@ export function PartiesForm() {
         name="cession"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>
+            <FormSearchLabel name={field.name}>
               Cession du droit au Bail par le Preneur d'origine
-            </FormLabel>
+            </FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -71,7 +67,9 @@ export function PartiesForm() {
         name="cession_reason"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Raison de la cession</FormLabel>
+            <FormSearchLabel name={field.name}>
+              Raison de la cession
+            </FormSearchLabel>
             <FormControl>
               <Textarea {...field} />
             </FormControl>

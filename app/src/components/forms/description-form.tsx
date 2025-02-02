@@ -2,12 +2,8 @@ import { z } from "zod";
 import { useFormContext } from "react-hook-form";
 import { YesNoRadioGroup } from "@/components/forms/elements/yes-no-radiogroup";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-} from "@/components/ui/form";
+import { FormField, FormItem, FormControl } from "@/components/ui/form";
+import { FormSearchLabel } from "./elements/form-search-label";
 
 export const descriptionFormSchema = z.object({
   adresse: z.string().optional(),
@@ -30,7 +26,7 @@ export function DescriptionForm() {
         name="adresse"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Adresse</FormLabel>
+            <FormSearchLabel name={field.name}>Adresse</FormSearchLabel>
             <FormControl>
               <Textarea {...field} />
             </FormControl>
@@ -43,7 +39,9 @@ export function DescriptionForm() {
         name="designation"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Désignation des Locaux Loués</FormLabel>
+            <FormSearchLabel name={field.name}>
+              Désignation des Locaux Loués
+            </FormSearchLabel>
             <FormControl>
               <Textarea {...field} />
             </FormControl>
@@ -56,9 +54,9 @@ export function DescriptionForm() {
         name="destination"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>
+            <FormSearchLabel name={field.name}>
               Destination des Locaux Loués et activités autorisés
-            </FormLabel>
+            </FormSearchLabel>
             <FormControl>
               <Textarea {...field} />
             </FormControl>
@@ -71,7 +69,9 @@ export function DescriptionForm() {
         name="clause"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Clause d'enseigne</FormLabel>
+            <FormSearchLabel name={field.name}>
+              Clause d'enseigne
+            </FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -87,7 +87,9 @@ export function DescriptionForm() {
         name="clause_reason"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Raison de la clause</FormLabel>
+            <FormSearchLabel name={field.name}>
+              Raison de la clause
+            </FormSearchLabel>
             <FormControl>
               <Textarea {...field} />
             </FormControl>
@@ -100,7 +102,7 @@ export function DescriptionForm() {
         name="exclusivite"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Exclusivité</FormLabel>
+            <FormSearchLabel name={field.name}>Exclusivité</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -116,7 +118,7 @@ export function DescriptionForm() {
         name="non_concurrence"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Non-concurrence</FormLabel>
+            <FormSearchLabel name={field.name}>Non-concurrence</FormSearchLabel>
             <FormControl>
               <YesNoRadioGroup
                 defaultValue={field.value}
@@ -132,7 +134,9 @@ export function DescriptionForm() {
         name="non_concurrence_reason"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Raison de la non-concurrence</FormLabel>
+            <FormSearchLabel name={field.name}>
+              Raison de la non-concurrence
+            </FormSearchLabel>
             <FormControl>
               <Textarea {...field} />
             </FormControl>
