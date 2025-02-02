@@ -4,6 +4,9 @@ import numpy as np
 import faiss  # Ajout de FAISS pour stockage des vecteurs
 import boto3
 import tiktoken
+import nltk
+nltk.download("punkt")
+from nltk.tokenize import sent_tokenize
 
 class MarkdownVectorizer:
     def __init__(self, model_emb="amazon.titan-embed-text-v2:0", region="us-west-2"):
@@ -28,15 +31,53 @@ class MarkdownVectorizer:
             return file.read()
 
     def split_text(self, text, chunk_size=500, overlap=100):
-        """Découpe le texte en morceaux (chunks) avec overlap."""
+        """Découpe un texte en chunks, d'abord par paragraphes, puis par phrases si nécessaire."""
+        
         encoding = tiktoken.get_encoding("cl100k_base")
-        tokens = encoding.encode(text)
-        
+        paragraphs = text.split("\n\n")  # Séparer par paragraphes
+
         chunks = []
-        for i in range(0, len(tokens), chunk_size - overlap):
-            chunk = tokens[i : i + chunk_size]
-            chunks.append(encoding.decode(chunk))
-        
+        current_chunk = []
+        current_length = 0
+
+        for para in paragraphs:
+            tokenized_para = encoding.encode(para)
+            
+            # Si le paragraphe tient dans un chunk, on l'ajoute directement
+            if len(tokenized_para) <= chunk_size:
+                if current_length + len(tokenized_para) > chunk_size:
+                    # Sauvegarde le chunk précédent
+                    chunks.append(encoding.decode(sum(current_chunk, [])))
+                    current_chunk = []
+                    current_length = 0
+
+                current_chunk.append(tokenized_para)
+                current_length += len(tokenized_para)
+            else:
+                # Si le paragraphe est trop long, on le découpe en phrases
+                sentences = sent_tokenize(para)
+                for sentence in sentences:
+                    tokenized_sentence = encoding.encode(sentence)
+                    sentence_length = len(tokenized_sentence)
+
+                    if current_length + sentence_length > chunk_size:
+                        chunks.append(encoding.decode(sum(current_chunk, [])))
+
+                        # Overlap avec les derniers tokens du chunk précédent
+                        if chunks and overlap > 0:
+                            overlap_tokens = encoding.encode(" ".join(chunks[-1].split()[-overlap:]))
+                            current_chunk = [overlap_tokens]
+                            current_length = len(overlap_tokens)
+                        else:
+                            current_chunk = []
+                            current_length = 0
+
+                    current_chunk.append(tokenized_sentence)
+                    current_length += sentence_length
+
+        if current_chunk:
+            chunks.append(encoding.decode(sum(current_chunk, [])))
+
         return chunks
 
     def vectorize_chunks(self, chunks):

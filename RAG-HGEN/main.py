@@ -10,11 +10,10 @@ import os
 from pdf_processing import process_pdf
 from create_database import MarkdownVectorizer
 from query_rag import generate_rag_response
+from json_storage_func import save_to_json, load_from_json
 
+loaded_prompts = load_from_json("prompts_word.json")
 
-with open("prompts_word.json", "r", encoding="utf-8") as file:
-    loaded_prompts = json.load(file)
-print("📌 Liste des prompts chargés. Le premier :", loaded_prompts[0])
 
 MODEL_LLM = "mistral.mistral-7b-instruct-v0:2"
 MODEL_EMB = "amazon.titan-embed-text-v2:0"
@@ -39,7 +38,7 @@ def query_iterate(index, chunks, model_emb= MODEL_EMB, model_llm=MODEL_LLM):
     for prompt in loaded_prompts:
         query = prompt["query"]
         instruction = prompt["instruction"]
-        response = generate_rag_response(query, instruction, chunks, index, model_llm=model_llm, model_emb=model_emb, k=3)
+        response = generate_rag_response(query, instruction, chunks, index, model_llm=model_llm, model_emb=model_emb, k=3)['outputs'][0]['text']
         print("\n🔮 Réponse générée :")
         print(response)
         answers_dict[prompt["id"]] = response
@@ -52,8 +51,10 @@ FAISS_INDEX_PATH = "faiss_index.bin"
 
 if __name__ == "__main__":
     chunks, vectors = process_function()
+    save_to_json(chunks, "chunks.json")
     print("Charge l'index FAISS...")
     index = faiss.read_index(FAISS_INDEX_PATH)
+    #chunks = load_from_json("chunks.json")
     print("🔍 Index FAISS chargé ! Itération ...")
 
     query_iterate(index, chunks)
