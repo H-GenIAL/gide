@@ -28,10 +28,15 @@ const secondaryVariant = {
 
 interface FileUploadProps {
   maxFiles?: number;
+  mimeTypes?: string[];
   onChange?: (files: File[]) => void;
 }
 
-export const FileUpload = ({ maxFiles, onChange }: FileUploadProps) => {
+export const FileUpload = ({
+  maxFiles,
+  mimeTypes,
+  onChange,
+}: FileUploadProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -40,8 +45,16 @@ export const FileUpload = ({ maxFiles, onChange }: FileUploadProps) => {
       return;
     }
 
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    onChange?.(newFiles);
+    const validFiles = newFiles.filter((file) =>
+      mimeTypes ? mimeTypes.includes(file.type) : true,
+    );
+
+    if (validFiles.length === 0) {
+      return;
+    }
+
+    setFiles((prevFiles) => [...prevFiles, ...validFiles]);
+    onChange?.(validFiles);
   };
 
   const handleRemoveFile = (indexToRemove: number) => {
