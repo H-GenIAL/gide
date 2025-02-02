@@ -60,7 +60,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 2. Install Python dependencies:
 ```bash
-cd api/functions
+cd api/functions/<function_name>
 pip install -r requirements.txt
 ```
 
